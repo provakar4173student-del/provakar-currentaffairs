@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="cyberpunk-dark" data-text-size="medium">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="PROVAKAR's Ultimate Panchayati Bangla Hub - West Bengal Gram Panchayat & Competitive Exams CBT Platform" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>PROVAKAR's Ultimate Panchayati Bangla Hub</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome for Pro Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Bengali Google Fonts Interceptor -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Core Design Sheet Component -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased transition-colors duration-300">
+
+  <!-- Toast Notification Overlay System -->
+  <div id="toast" class="toast glass-strong rounded-lg px-4 py-3 flex items-center gap-3 z-50">
+    <i id="toast-icon" class="fa-solid fa-check-circle text-emerald-ok text-xl"></i>
+    <span id="toast-msg" class="text-sm font-medium">সফলভাবে সম্পন্ন হয়েছে</span>
+  </div>
+
+  <!-- Mobile Drawer Overlay Menu -->
+  <div id="drawer" class="drawer z-50" onclick="if(event.target===this)ViewEngine.closeDrawer()">
+    <div class="drawer-panel overflow-y-auto scrollbar-thin flex flex-col" id="drawer-content">
+      <!-- JavaScript will injection routing links here for mobile drawer -->
+    </div>
+  </div>
+
+  <!-- Global Settings Overlay View -->
+  <div id="settings-panel" class="drawer z-50" onclick="if(event.target===this)Settings.close()">
+    <div class="drawer-panel overflow-y-auto scrollbar-thin p-5">
+      <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+        <h3 class="text-xl font-bold flex items-center gap-2">
+          <i class="fa-solid fa-gear text-[var(--accent)]"></i> অ্যাপ্লিকেশন সেটিংস
+        </h3>
+        <button onclick="Settings.close()" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-800 transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <!-- Settings form component elements -->
+      <div id="settings-body" class="space-y-6"></div>
+    </div>
+  </div>
+
+  <!-- Global Dynamic Modal Root Node -->
+  <div id="modal-container"></div>
+
+  <!-- Main Grid Single Page App Structure -->
+  <div id="app" class="relative min-h-screen flex">
+
+    <!-- Desktop Persistent Sidebar Navigation -->
+    <aside class="desktop-only hidden lg:flex flex-col w-72 bg-[var(--bg-secondary)] border-r border-[var(--border)] sticky top-0 h-screen overflow-y-auto scrollbar-thin z-20">
+      <!-- Sidebar Branding Header -->
+      <div class="p-6 border-b border-[var(--border)]">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-cyan-500/10">
+            <i class="fa-solid fa-graduation-cap text-white text-xl"></i>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold text-[var(--accent)] tracking-wide">PROVAKAR</h1>
+            <p class="text-xs text-slate-400 font-medium">Panchayati Bangla Hub</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Core Router Navigation Menu Node -->
+      <nav id="sidebar-nav" class="flex-1 p-4 space-y-1"></nav>
+      
+      <!-- Sidebar Profile & Statistics Widget -->
+      <div class="p-4 border-t border-[var(--border)]">
+        <div class="glass p-4 rounded-xl bg-slate-900/20 border border-slate-800/60">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow">P</div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold truncate text-slate-200">Provakar Biswas</p>
+              <p class="text-xs text-slate-400">Administrator</p>
+            </div>
+          </div>
+          <div class="text-xs text-slate-400 space-y-1.5 pt-1 border-t border-slate-800/40">
+            <div class="flex justify-between"><span>মোট প্রশ্ন:</span><span class="text-[var(--accent)] font-semibold" id="stat-total-q">0</span></div>
+            <div class="flex justify-between"><span>মোট ওয়ানলাইনার:</span><span class="text-[var(--accent)] font-semibold" id="stat-total-o">0</span></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Content Node -->
+    <div class="flex-1 flex flex-col min-w-0 relative">
+      
+      <!-- Mobile Native Global Header -->
+      <header class="mobile-only glass-strong border-b border-[var(--border)] sticky top-0 z-30 bg-[var(--bg-primary)]/90 backdrop-blur-md">
+        <div class="flex items-center justify-between p-4">
+          <button onclick="ViewEngine.openDrawer()" class="w-10 h-10 rounded-lg border border-slate-800 flex items-center justify-center bg-slate-900/30">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="text-base font-bold text-[var(--accent)] tracking-wider">PROVAKAR HUB</h1>
+          <button onclick="Settings.open()" class="w-10 h-10 rounded-lg border border-slate-800 flex items-center justify-center bg-slate-900/30">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Global SPA Dynamic Workspace Injection Viewport -->
+      <main class="flex-1 p-4 lg:p-8 overflow-y-auto" id="main-view"></main>
+
+      <!-- Mobile Native Dynamic Bottom Action Navigation Bar -->
+      <nav class="mobile-only glass-strong border-t border-[var(--border)] fixed bottom-0 left-0 right-0 z-30 bg-[var(--bg-secondary)]/90 backdrop-blur-md">
+        <div class="grid grid-cols-5 gap-1 p-2" id="mobile-nav"></div>
+      </nav>
+      
+      <!-- Mobile Bottom Action Safe Spacer -->
+      <div class="mobile-only h-16"></div>
+    </div>
+  </div>
+
+  <!-- Core JavaScript Single Page App Bundle Engine Link -->
+  <script src="app.js" type="module"></script>
+</body>
+</html>
