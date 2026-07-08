@@ -1,0 +1,289 @@
+/* ==========================================================================
+   PROVAKAR LEARNING MANAGEMENT SYSTEM - CORE COMPONENT STYLES v3.0
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ১. ডাইনামিক থিম ও ভ্যারিয়েবল কনফিগারেশন (Multi-Theme Variables)
+   -------------------------------------------------------------------------- */
+:root, [data-theme="cyberpunk-dark"] {
+  --bg-primary: #0F172A;
+  --bg-secondary: #020617;
+  --accent: #06B6D4;
+  --accent-soft: #22D3EE;
+  --accent-glow: rgba(6, 182, 212, 0.25);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --border: rgba(6, 182, 212, 0.15);
+  --emerald-ok: #10B981;
+  --vivid-red: #EF4444;
+}
+
+[data-theme="midnight-blue"] {
+  --bg-primary: #0A0F1D;
+  --bg-secondary: #030712;
+  --accent: #3B82F6;
+  --accent-soft: #60A5FA;
+  --accent-glow: rgba(59, 130, 246, 0.3);
+  --text-primary: #E2E8F0;
+  --text-secondary: #64748B;
+  --border: rgba(59, 130, 246, 0.2);
+  --emerald-ok: #10B981;
+  --vivid-red: #EF4444;
+}
+
+[data-theme="stealth-black"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --accent: #10B981;
+  --accent-soft: #34D399;
+  --accent-glow: rgba(16, 185, 129, 0.35);
+  --text-primary: #E5E7EB;
+  --text-secondary: #6B7280;
+  --border: rgba(16, 185, 129, 0.25);
+  --emerald-ok: #10B981;
+  --vivid-red: #EF4444;
+}
+
+/* --------------------------------------------------------------------------
+   ২. গ্লোবাল রিসেট ও বেস লেআউট (Global Reset & Base Setup)
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  font-family: 'Noto Sans Bengali', 'Hind Siliguri', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ব্যাকগ্রাউন্ড ডাইনামিক লাইটিং গ্লো */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   ৩. কাস্টম কম্পোনেন্ট ও ইন্টারফেস ক্লাস (Custom UI Components)
+   -------------------------------------------------------------------------- */
+
+/* প্রফেশনাল গ্লাস কার্ড এফেক্ট */
+.glass-card {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.glass-strong {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+}
+
+/* নিওন টেক্সট ও হাইলাইটার */
+.neon-text {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.highlight-key {
+  color: var(--accent);
+  font-weight: 700;
+  background: linear-gradient(120deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.03) 100%);
+  padding: 0.15em 0.4em;
+  border-radius: 0.35em;
+  border-bottom: 1px solid rgba(6, 182, 212, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   ৪. রাউটার নেভিগেশন বাটন ডিজাইন (Sidebar Navigation)
+   -------------------------------------------------------------------------- */
+.nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  text-align: left;
+}
+.nav-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+.nav-btn.active {
+  color: var(--accent);
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.15);
+  border-left: 4px solid var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   ৫. ইনপুট এবং প্রফেশনাল বাটন সিস্টেম (Form Fields & Buttons)
+   -------------------------------------------------------------------------- */
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1.5px solid rgba(148, 163, 184, 0.15);
+  border-radius: 8px;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #0891B2);
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-glow);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  background: rgba(30, 41, 59, 0.4);
+  color: var(--text-primary);
+  border: 1.5px solid rgba(148, 163, 184, 0.15);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   ৬. চিপস এবং ওভারলে প্যানেল আর্কিটেকচার (Modals, Drawers & Overlay)
+   -------------------------------------------------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(30, 41, 59, 0.3);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.chip.active, .chip:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ড্রয়ার স্লাইডিং আর্কিটেকচার */
+.drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer-panel {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 85%;
+  max-width: 320px;
+  background: var(--bg-primary);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer.open .drawer-panel {
+  transform: translateX(0);
+}
+
+/* প্রফেশনাল মডাল পপআপ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-content {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   ৭. কাস্টম স্ক্রলবার ও মিডিয়া রেসপনসিভনেস (Scrollbar & Responsive Scales)
+   -------------------------------------------------------------------------- */
+.scrollbar-thin::-webkit-scrollbar { width: 5px; height: 5px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.2); }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+@media (max-width: 1023px) { .desktop-only { display: none !important; } }
+@media (min-width: 1024px) { .mobile-only { display: none !important; } }
+
+/* --------------------------------------------------------------------------
+   ৮. ডাইনামিক টেক্সট সাইজ স্কেলিং (Text Accessibility Scales)
+   -------------------------------------------------------------------------- */
+[data-text-size="small"] { font-size: 14px; }
+[data-text-size="medium"] { font-size: 16px; }
+[data-text-size="large"] { font-size: 18px; }
+
+/* --------------------------------------------------------------------------
+   ৯. কোর অ্যানিমেশন কিফ্রেমস (Core Animation Suite)
+   -------------------------------------------------------------------------- */
+.view-container { animation: fadeIn 0.4s ease-out; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
